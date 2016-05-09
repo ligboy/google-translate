@@ -1,0 +1,9 @@
+group 'org.ligboy.library'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'application'
+
+
+dependencies {
+
+}
