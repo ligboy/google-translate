@@ -131,7 +131,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 ### Maven template
-target/
+targetText/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup

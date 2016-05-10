@@ -1,7 +1,8 @@
 package org.ligboy.translate;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.stream.JsonReader;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import org.ligboy.translate.model.TokenKey;
@@ -23,7 +24,7 @@ import java.util.regex.Pattern;
 /**
  * @author ligboy
  */
-public class TranslateConverterFactory extends Converter.Factory {
+class TranslateConverterFactory extends Converter.Factory {
 
     private static Pattern PATTERN_TOKEN_KEY = Pattern.compile("TKK=eval\\('(.*?)'\\);");
 
@@ -31,26 +32,38 @@ public class TranslateConverterFactory extends Converter.Factory {
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
         if (type == TranslateResult.class) {
             return new Converter<ResponseBody, TranslateResult>() {
+
+                private Gson mGson = new Gson();
+
                 @Override
                 public TranslateResult convert(ResponseBody value) throws IOException {
                     TranslateResult data = new TranslateResult();
-                    JSONArray objects = JSON.parseArray(value.string());
-                    if (objects != null) {
-                        JSONArray translations = objects.getJSONArray(0);
+                    JsonReader jsonReader = mGson.newJsonReader(value.charStream());
+                    JsonArray jsonArray = null;
+                    try {
+                        jsonArray = mGson.fromJson(jsonReader, JsonArray.class);
+                    } finally {
+                        value.close();
+                    }
+//                    JSONArray objects = JSON.parseArray(body);
+                    if (jsonArray != null) {
+                        JsonArray translations = jsonArray.get(0).getAsJsonArray();
                         if (translations != null && translations.size() > 1) {
                             data.setSentences(new ArrayList<TranslateResult.Sentence>(translations.size() - 1));
                             List<TranslateResult.Sentence> sentences = data.getSentences();
                             for (int i = 0; i < translations.size() - 1; i++) {
                                 TranslateResult.Sentence sentence = new TranslateResult.Sentence();
-                                JSONArray sentenceArray = translations.getJSONArray(i);
-                                sentence.setSource(sentenceArray.getString(1));
-                                sentence.setTarget(sentenceArray.getString(0));
+                                JsonArray sentenceArray = translations.get(i).getAsJsonArray();
+                                sentence.setTargetText(sentenceArray.get(0).getAsString());
+                                sentence.setSourceText(sentenceArray.get(1).getAsString());
                                 //noinspection ConstantConditions
                                 sentences.add(i, sentence);
                             }
-                            JSONArray translit = translations.getJSONArray(translations.size() - 1);
-                            data.setTranslit(translit.getString(translit.size() - 1));
+                            JsonArray translitJsonArray = translations.get(translations.size() - 1).getAsJsonArray();
+                            data.setTranslit(translitJsonArray.get(translitJsonArray.size() - 1).getAsString());
                         }
+                        data.setSourceLang(jsonArray.get(2).getAsString());
+                        data.setLangProportion(jsonArray.get(6).getAsDouble());
                     }
                     return data;
                 }
@@ -63,12 +76,12 @@ public class TranslateConverterFactory extends Converter.Factory {
                     if (!body.isEmpty()) {
                         Matcher matcher = PATTERN_TOKEN_KEY.matcher(body);
                         if (matcher.find()) {
-                            /**
-                             * 这里使用JavaScript引擎去处理，是规避Token Key计算表达式的变更。
-                             */
+                            //uses JavaScript Engine to eval the key
                             ScriptEngine engine;
                             ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
+                            //The new faster javascript engine with java 8.
                             engine = scriptEngineManager.getEngineByName("nashorn");
+                            //backport to java 6
                             if (engine == null) {
                                 engine = scriptEngineManager.getEngineByName("JavaScript");
                             }

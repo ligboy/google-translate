@@ -9,11 +9,45 @@ import java.util.List;
  */
 public class TranslateResult {
 
-    private @Nullable List<Sentence> sentences;
+    public static final String SOURCE_LANG_AUTO = "auto";
+
+    private @Nullable
+    List<Sentence> sentences;
 
     @Nullable
-    public String getTranslit() {
-        return translit;
+    private String translit;
+
+    @Nullable
+    private String sourceLang;
+
+    private double langProportion;
+
+    @Nullable
+    public String getSourceText() {
+        if (sentences != null && !sentences.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (Sentence sentence : sentences) {
+                if (sentence != null && sentence.sourceText != null && !sentence.sourceText.isEmpty()) {
+                    sb.append(sentence.sourceText);
+                }
+            }
+            return sb.toString();
+        }
+        return null;
+    }
+
+    @Nullable
+    public String getTargetText() {
+        if (sentences != null && !sentences.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (Sentence sentence : sentences) {
+                if (sentence != null && sentence.targetText != null && !sentence.targetText.isEmpty()) {
+                    sb.append(sentence.targetText);
+                }
+            }
+            return sb.toString();
+        }
+        return null;
     }
 
     @Nullable
@@ -21,79 +55,77 @@ public class TranslateResult {
         return sentences;
     }
 
-    @Nullable
-    private String translit;
-
-    @Nullable
-    public String getSource() {
-        if (sentences != null && !sentences.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for (Sentence sentence : sentences) {
-                if (sentence != null && sentence.source != null && !sentence.source.isEmpty()) {
-                    sb.append(sentence.source);
-                }
-            }
-            return sb.toString();
-        }
-        return null;
-    }
-
-    @Nullable
-    public String getTarget() {
-        if (sentences != null && !sentences.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for (Sentence sentence : sentences) {
-                if (sentence != null && sentence.target != null && !sentence.target.isEmpty()) {
-                    sb.append(sentence.target);
-                }
-            }
-            return sb.toString();
-        }
-        return null;
-    }
-
     public void setSentences(@Nullable List<Sentence> sentences) {
         this.sentences = sentences;
+    }
+
+    @Nullable
+    public String getTranslit() {
+        return translit;
     }
 
     public void setTranslit(@Nullable String translit) {
         this.translit = translit;
     }
 
-    public static class Sentence {
+    @Nullable
+    public String getSourceLang() {
+        return sourceLang;
+    }
 
-        @Nullable
-        public String getSource() {
-            return source;
-        }
+    public void setSourceLang(@Nullable String sourceLang) {
+        this.sourceLang = sourceLang;
+    }
 
-        @Nullable
-        public String getTarget() {
-            return target;
-        }
+    /**
+     * The proportion of the detected language.
+     */
+    public double getLangProportion() {
+        return langProportion;
+    }
 
-        @Nullable
-        private String source;
-
-        @Nullable
-        private String target;
-
-        @Override
-        public String toString() {
-            return "Source: [" + source + "], \ngetTarget: [" + target + "]\n";
-        }
-
-        public void setSource(@Nullable String source) {
-            this.source = source;
-        }
-
-        public void setTarget(@Nullable String target) {
-            this.target = target;
-        }
+    /**
+     * Set the proportion of the detected language.
+     */
+    public void setLangProportion(double langProportion) {
+        this.langProportion = langProportion;
     }
 
     @Override
     public String toString() {
-        return "sentences: " + (sentences != null ? sentences.toString() : "null") + "\ntranslit: " + translit + "\n";
+        return "sentences: " + (sentences != null ? sentences.toString() : "null") + "\ntranslit: " + translit
+                + "\nsourceLang: " + sourceLang + "\n";
+    }
+
+    public static class Sentence {
+
+        @Nullable
+        public String getSourceText() {
+            return sourceText;
+        }
+
+        @Nullable
+        public String getTargetText() {
+            return targetText;
+        }
+
+        @Nullable
+        private String sourceText;
+
+        @Nullable
+        private String targetText;
+
+        @Override
+        public String toString() {
+            return "SourceText: [" + sourceText + "], \ntargetText: [" + targetText + "]\n";
+        }
+
+        public void setSourceText(@Nullable String sourceText) {
+            this.sourceText = sourceText;
+        }
+
+        public void setTargetText(@Nullable String targetText) {
+            this.targetText = targetText;
+        }
     }
 }

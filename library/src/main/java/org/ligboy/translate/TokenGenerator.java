@@ -46,7 +46,7 @@ public class TokenGenerator {
     public String token(@NonNls String text){
         String[] d = mTokenKey.split("\\.");
         long b = Integer.valueOf(d[0]);
-        List<Integer> e = new ArrayList<>();
+        List<Integer> e = new ArrayList<Integer>();
         for (int i = 0, g = 0; g < text.length(); g++) {
             char m = text.charAt(g);
             if (128 > m) {

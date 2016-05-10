@@ -3,6 +3,7 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'application'
 
+mainClassName = "org.ligboy.translate.sample.Main"
 
 dependencies {
 
