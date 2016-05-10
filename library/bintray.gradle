@@ -11,7 +11,7 @@ bintray {
     configurations = [ 'archives' ]
 
     pkg {
-        repo = projectName
+        repo = "maven"
         name = mavenArtifactId
         userOrg = bintrayOrg
         licenses = [ 'Apache-2.0' ]
