@@ -136,7 +136,7 @@ public class TranslateServiceTest {
                 + "gle dàquán yǐnsī quán hé shǐyòng tiáokuǎn bāngzhù fāsòng fǎnkuì\"]],,\"zh-CN\",,,,0.95330018,,[[\""
                 + "zh-CN\"],,[0.95330018],[\"zh-CN\"]]]"));
         mMockWebServer.enqueue(new MockResponse().setBody(""));
-        Call<TranslateResult> translateResultCall1 = mTranslateService.translate(TranslateResult.SOURCE_LANG_AUTO, "en",
+        Call<TranslateResult> translateResultCall1 = mTranslateService.translate(Translate.SOURCE_LANG_AUTO, "en",
                 "Ligboy\n翻译关闭即时翻译\n中文英语德语检测到中文英语中文(简体)日语翻译\n\n"
                         + "fuck啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\nfuck啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n"
                         + "修改建议\nGoogle 翻译（企业版）：译者工具包网站翻译器全球商机洞察\n关于 Google 翻译社区移动Google "
@@ -182,7 +182,7 @@ public class TranslateServiceTest {
         TokenKey tokenKey = tokenKeyResponse.body();
         if (tokenKeyResponse.isSuccessful() && tokenKey != null && tokenKey.getKey() != null) {
             TokenGenerator tokenGenerator = new TokenGenerator(tokenKey.getKey());
-            Call<TranslateResult> translateResultCall = mOnlineTransService.translate(TranslateResult.SOURCE_LANG_AUTO,
+            Call<TranslateResult> translateResultCall = mOnlineTransService.translate(Translate.SOURCE_LANG_AUTO,
                     "zh-CN", SOURCE_TEXT_1, tokenGenerator.token(SOURCE_TEXT_1));
             Response<TranslateResult> resultResponse = translateResultCall.execute();
             Assert.assertTrue(resultResponse.isSuccessful());

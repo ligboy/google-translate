@@ -17,6 +17,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 @SuppressWarnings("WeakerAccess")
 public class Translate {
 
+    public static final String SOURCE_LANG_AUTO = "auto";
+
     private static final String DEFAULT_BASE_URL = "https://translate.google.cn";
 
     TokenGenerator mTokenGenerator;
@@ -100,7 +102,7 @@ public class Translate {
             throw new RuntimeException("token key == null");
         }
         if (source == null) {
-            source = TranslateResult.SOURCE_LANG_AUTO;
+            source = Translate.SOURCE_LANG_AUTO;
         }
         final Call<TranslateResult> resultCall = mService.translate(source, target, text, mTokenGenerator.token(text));
         return resultCall.execute().body();

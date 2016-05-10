@@ -8,8 +8,6 @@ import java.util.List;
  * @author ligboy
  */
 public class TranslateResult {
-
-    public static final String SOURCE_LANG_AUTO = "auto";
     @Nullable
     private List<Sentence> sentences;
 
