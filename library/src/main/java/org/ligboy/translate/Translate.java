@@ -25,7 +25,7 @@ public class Translate {
     private TranslateService mService;
 
     /**
-     * Default Constructor with default base URL & retrofit & client.
+     * Default Constructor with default base URL &amp; retrofit &amp; client.
      */
     public Translate() {
         this(null, null);
@@ -49,7 +49,7 @@ public class Translate {
     }
 
     /**
-     * Constructor with default retrofit & client.
+     * Constructor with default retrofit &amp; client.
      * @param baseUrl The base URL of translation server.
      */
     public Translate(@NotNull String baseUrl) {
@@ -93,7 +93,7 @@ public class Translate {
      * @param source The source Language. default "auto" - which means auto detecting the source language.
      * @param target The target Language.
      * @return The translated result.
-     * @throws Exception
+     * @throws Exception exception
      */
     @Nullable
     public TranslateResult translate(@NotNull String text, @Nullable String source,

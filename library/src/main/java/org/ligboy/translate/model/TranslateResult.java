@@ -76,6 +76,7 @@ public class TranslateResult {
 
     /**
      * The proportion of the detected language.
+     * @return proportion
      */
     public double getLangProportion() {
         return langProportion;
@@ -83,6 +84,7 @@ public class TranslateResult {
 
     /**
      * Set the proportion of the detected language.
+     * @param langProportion proportion
      */
     public void setLangProportion(double langProportion) {
         this.langProportion = langProportion;
