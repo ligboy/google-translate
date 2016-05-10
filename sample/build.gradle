@@ -13,5 +13,6 @@ targetCompatibility = 1.8
 mainClassName = "org.ligboy.translate.sample.Main"
 
 dependencies {
+    compile project(":library")
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
