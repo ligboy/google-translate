@@ -1,5 +1,7 @@
 apply plugin: 'idea'
 apply plugin: 'java'
+apply from: 'maven.gradle'
+apply from: 'bintray.gradle'
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.8
