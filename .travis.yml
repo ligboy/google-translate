@@ -8,7 +8,7 @@ deploy:
   api_key:
     secure: iDYq/BUsWGAxpW1Y2k1XcaajLT5nzMGfNhLMZnEvuz9k0QiOD+xZjk5hV5UqHSTXU70qqvVqb90leSFsy27hbTAXRttWl+4uIgXJuGmclLNIdVCA8OsOlWkcyIrNZRJdWrmx/DkgGZasB8P/V+EnOQpyfpS+gN49ahqUutafhn4vMoidJYtbQ6LH8jewnv9tSUa/jlPDuF38nPROvY1XVfDgEp4UIw9NS5TTD8UuhD9h5Zbj4X+l7ywtRIKPzI0ap+F76NPNB/8LKmUoP/3wmw6JJapZN6UBKjKQue7T6r+ICo6ajwuic0QCL49Km1kLnx3HDfBM6LwZZjzLfaBWOs1CfBlcrUX7gDJaoVRk5toDDB2Kg1HJfaH94AcnHKJwTEAkv1pskjPQNrLc99/KoqWJFl61wvaSkDIriq6ppIEg9j8RYrbJ4LJ8p9e7kKaJl8bHYjz8uJ1fSuaW+Wf8A/bUTeBjV++o5p0Fpy1KBPvMnAhXE2ScL4FQ1xLdF+V/VOhSW5Tj3+cttFpL0jxbuSDAfa8SiIJgtTBXArTk2stu7QgY2J2Gl3/BkVms3kaBD4xxasa9xxAiSDTbp67GUPHcoZdIdQzgHnwQybYb4bgroTOQ4pIxBfIXQliti0l9K41PAhMnxNXB1rn0Xfibz+MuctKZCIsN74SeNNgOVeQ=
   file_glob: true
-  file: library/build/libs/library-*.jar
+  file: library/build/libs/google-translate-*.jar
   skip_cleanup: true
   on:
     tags: true

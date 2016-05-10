@@ -1,6 +1,39 @@
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: "maven"
+apply plugin: "maven-publish"
 apply from: 'constants.gradle'
 
+project.archivesBaseName = mavenArtifactId
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier "sources"
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+// add javadoc/source jar tasks as artifacts
+artifacts {
+    archives sourcesJar, javadocJar
+}
+
+
+publishing {
+    publications {
+        Maven(MavenPublication) {
+            groupId mavenGroup
+            artifactId mavenArtifactId
+            version mavenVersion
+
+            artifact javadocJar
+            artifact sourcesJar
+
+            from components.java
+        }
+    }
+}
 install {
     repositories.mavenInstaller {
         pom.project {
@@ -24,12 +57,12 @@ install {
             scm {
                 connection "${githubUrl}.git"
                 url githubUrl
-
             }
             developers {
                 developer {
-                    name 'Ligboy'
-                    email 'ligboy@gmai.com'
+                    id 'ligboy'
+                    name 'ligboy'
+                    email 'ligboy@gmail.com'
                 }
             }
         }

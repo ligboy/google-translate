@@ -2,10 +2,10 @@ ext {
     projectName = 'google-translate'
     projectDesc = 'Hack API for Google Translate.'
 
-    githubUrl = 'https://github.com/ligboy/google-traslate'
+    githubUrl = 'https://github.com/ligboy/google-trnaslate'
 
     mavenGroup = 'org.ligboy.library'
-    mavenArtifactId = 'google-traslate'
+    mavenArtifactId = 'google-translate'
     mavenVersion = '0.1.0'
 
     bintrayOrg = 'ligboy'
