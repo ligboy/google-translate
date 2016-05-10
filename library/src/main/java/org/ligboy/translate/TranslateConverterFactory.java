@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
  */
 class TranslateConverterFactory extends Converter.Factory {
 
-    private static Pattern PATTERN_TOKEN_KEY = Pattern.compile("TKK=eval\\('(.*?)'\\);");
+    private static final Pattern PATTERN_TOKEN_KEY = Pattern.compile("TKK=eval\\('(.*?)'\\);");
 
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
@@ -102,7 +102,8 @@ class TranslateConverterFactory extends Converter.Factory {
     }
 
     @Override
-    public Converter<?, RequestBody> requestBodyConverter(Type type, Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
+    public Converter<?, RequestBody> requestBodyConverter(Type type, Annotation[] parameterAnnotations,
+                                                          Annotation[] methodAnnotations, Retrofit retrofit) {
         return null;
     }
 }

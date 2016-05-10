@@ -1,5 +1,6 @@
 
 dependencies {
+    compile "org.jetbrains:annotations:15.0"
     compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
     compile "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
     compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"

@@ -13,8 +13,8 @@ import java.util.List;
 public class TokenGenerator {
 
     private String mTokenKey = "406249.3075489964";
-    private static final String $b = "+-a^+6";
-    private static final String Zb = "+-3^+b+-f";
+    private static final String SB = "+-a^+6";
+    private static final String ZB = "+-3^+b+-f";
 
     /**
      * @param tokenKey The key of token.
@@ -43,7 +43,7 @@ public class TokenGenerator {
      * @param text The source to be target.
      * @return The token
      */
-    public String token(@NonNls String text){
+    public String token(@NonNls String text) {
         String[] d = mTokenKey.split("\\.");
         long b = Integer.valueOf(d[0]);
         List<Integer> e = new ArrayList<Integer>();
@@ -70,9 +70,9 @@ public class TokenGenerator {
         long ab = b;
         for (Integer anE : e) {
             ab += anE;
-            ab = qM(ab, $b);
+            ab = qM(ab, SB);
         }
-        ab = qM(ab, Zb);
+        ab = qM(ab, ZB);
         ab = ((int) ab) ^ (int) Long.valueOf(d[1]).longValue();
         if (0 > ab) {
             ab = ((int) ab & (int) 2147483647L) + 2147483648L;

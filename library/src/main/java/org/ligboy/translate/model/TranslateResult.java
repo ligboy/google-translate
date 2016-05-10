@@ -10,9 +10,8 @@ import java.util.List;
 public class TranslateResult {
 
     public static final String SOURCE_LANG_AUTO = "auto";
-
-    private @Nullable
-    List<Sentence> sentences;
+    @Nullable
+    private List<Sentence> sentences;
 
     @Nullable
     private String translit;

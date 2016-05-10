@@ -1,21 +1,28 @@
 buildscript {
 
-}
-allprojects {
-    apply plugin: 'idea'
-
     repositories {
         jcenter()
     }
-
+    dependencies {
+//        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+    }
 }
-subprojects {
+
+allprojects {
     group 'org.ligboy.library'
     version '1.0-SNAPSHOT'
+    apply plugin: 'idea'
     apply plugin: 'java'
+    apply plugin: 'checkstyle'
 
     sourceCompatibility = 1.6
     targetCompatibility = 1.8
+
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+    checkstyle {
+        configFile = rootProject.file('checkstyle.xml')
+    }
 
     //noinspection GroovyAssignabilityCheck
     ext {
@@ -24,7 +31,13 @@ subprojects {
     }
 
     dependencies {
-        compile "org.jetbrains:annotations:15.0"
         testCompile group: 'junit', name: 'junit', version: '4.11'
     }
+
+    repositories {
+        jcenter()
+    }
+
+}
+subprojects {
 }

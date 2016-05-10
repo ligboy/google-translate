@@ -39,7 +39,7 @@ public class Translate {
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(new TranslateConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(baseUrl == null ? DEFAULT_BASE_URL : baseUrl );
+                .baseUrl(baseUrl == null ? DEFAULT_BASE_URL : baseUrl);
         if (client != null) {
             builder.client(client);
         }
