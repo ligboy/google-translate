@@ -10,6 +10,7 @@ bintray {
     key = hasProperty('BINTRAY_KEY') ? getProperty('BINTRAY_KEY') : System.getenv('BINTRAY_KEY')
 
     configurations = [ 'archives' ]
+    publish = true
 
     pkg {
         repo = "maven"
@@ -25,6 +26,9 @@ bintray {
 
         version {
             name = mavenVersion
+            gpg {
+                sign = true
+            }
             mavenCentralSync {
                 sync = true //Optional (true by default). Determines whether to sync the version to Maven Central.
                 user = hasProperty('OSS_USER') ? getProperty('OSS_USER') : System.getenv('OSS_USER') //OSS user token
