@@ -2,8 +2,8 @@ apply plugin: 'application'
 apply plugin: 'idea'
 apply plugin: 'java'
 
-sourceCompatibility = JavaVersion.VERSION_1_6
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
 
 [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
 

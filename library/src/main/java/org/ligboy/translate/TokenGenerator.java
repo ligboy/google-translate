@@ -1,6 +1,7 @@
 package org.ligboy.translate;
 
 import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,4 +82,21 @@ public class TokenGenerator {
         return (ab + "." + ((int) ab ^ (int) b));
     }
 
+    /**
+     * Get Token Key
+     * @return The Token Key.
+     */
+    public String getTokenKey() {
+        return mTokenKey;
+    }
+
+    /**
+     * Set Token Key
+     * @param tokenKey The Token Key.
+     * @return This {@link TokenGenerator} instance.
+     */
+    public TokenGenerator setTokenKey(@NotNull String tokenKey) {
+        mTokenKey = tokenKey;
+        return this;
+    }
 }

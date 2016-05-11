@@ -6,7 +6,7 @@ ext {
 
     mavenGroup = 'org.ligboy.library'
     mavenArtifactId = 'google-translate'
-    mavenVersion = '0.1.0'
+    mavenVersion = version
 
     bintrayOrg = 'ligboy'
 }

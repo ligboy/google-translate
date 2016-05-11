@@ -11,7 +11,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
+import java.io.IOException;
+
 /**
+ * Translate API Wrapper
  * @author ligboy ligboy@gmail.com
  */
 @SuppressWarnings("WeakerAccess")
@@ -93,11 +96,12 @@ public class Translate {
      * @param source The source Language. default "auto" - which means auto detecting the source language.
      * @param target The target Language.
      * @return The translated result.
-     * @throws Exception exception
+     * @throws RuntimeException exception if mTokenGenerator == null
+     * @throws IOException exception if translation requesting encountered errors.
      */
     @Nullable
     public TranslateResult translate(@NotNull String text, @Nullable String source,
-                                     @NotNull String target) throws Exception {
+                                     @NotNull String target) throws RuntimeException, IOException {
         if (mTokenGenerator == null) {
             throw new RuntimeException("token key == null");
         }
@@ -106,5 +110,22 @@ public class Translate {
         }
         final Call<TranslateResult> resultCall = mService.translate(source, target, text, mTokenGenerator.token(text));
         return resultCall.execute().body();
+    }
+
+    /**
+     * Get the {@link TokenGenerator}.
+     * @return The TokenGenerator.
+     */
+    @Nullable
+    public TokenGenerator getTokenGenerator() {
+        return mTokenGenerator;
+    }
+
+    /**
+     * Set the {@link TokenGenerator}.
+     * @param tokenGenerator The TokenGenerator.
+     */
+    public void setTokenGenerator(@NotNull TokenGenerator tokenGenerator) {
+        this.mTokenGenerator = tokenGenerator;
     }
 }

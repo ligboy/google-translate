@@ -22,9 +22,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Translate Converter Factory
  * @author ligboy
  */
-class TranslateConverterFactory extends Converter.Factory {
+public class TranslateConverterFactory extends Converter.Factory {
 
     private static final Pattern PATTERN_TOKEN_KEY = Pattern.compile("TKK=eval\\('(.*?)'\\);");
 

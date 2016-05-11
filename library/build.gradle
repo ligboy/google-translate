@@ -3,8 +3,8 @@ apply plugin: 'java'
 apply from: 'maven.gradle'
 apply from: 'bintray.gradle'
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
 
 [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
 compileJava.options.compilerArgs = ['-Xlint:options']
