@@ -96,12 +96,11 @@ public class Translate {
      * @param source The source Language. default "auto" - which means auto detecting the source language.
      * @param target The target Language.
      * @return The translated result.
-     * @throws RuntimeException exception if mTokenGenerator == null
      * @throws IOException exception if translation requesting encountered errors.
      */
     @Nullable
     public TranslateResult translate(@NotNull String text, @Nullable String source,
-                                     @NotNull String target) throws RuntimeException, IOException {
+                                     @NotNull String target) throws IOException {
         if (mTokenGenerator == null) {
             throw new RuntimeException("token key == null");
         }
