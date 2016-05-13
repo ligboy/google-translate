@@ -104,6 +104,7 @@ public class Translate {
      * @param target The target Language.
      * @return The translated result.
      * @throws TranslateFailedException exception if translation requesting encountered errors.
+     * @throws IllegalTokenKeyException exception if there something wrong with the token key.
      */
     @Nullable
     public TranslateResult translate(@NotNull String text, @Nullable String source, @NotNull String target)
@@ -172,6 +173,8 @@ public class Translate {
 
         /**
          * Set the API base URL.
+         * @param baseUrl The base URL of server.
+         * @return This {@link Builder}
          */
         public Builder baseUrl(String baseUrl) {
             this.baseUrl = baseUrl;
@@ -181,6 +184,7 @@ public class Translate {
         /**
          * Set the {@link TokenGenerator}.
          * @param tokenGenerator The TokenGenerator.
+         * @return This {@link Builder}
          */
         public Builder tokenGenerator(@NotNull TokenGenerator tokenGenerator) {
             this.tokenGenerator = tokenGenerator;
@@ -189,7 +193,9 @@ public class Translate {
 
         /**
          * Set the level of logging.
-         * <p/>Default {@link LogLevel#NONE}
+         * <p>Default {@link LogLevel#NONE}
+         * @param logLevel The level of logging.
+         * @return This {@link Builder}
          */
         public Builder logLevel(LogLevel logLevel) {
             this.logLevel = logLevel;
@@ -200,6 +206,8 @@ public class Translate {
          * Sets the DNS service used to lookup IP addresses for hostnames.
          *
          * <p>If unset, the {@link Dns#SYSTEM system-wide default} DNS will be used.
+         * @param dns dns
+         * @return This {@link Builder}
          */
         public Builder dns(Dns dns) {
             if (dns == null) throw new NullPointerException("dns == null");
@@ -207,6 +215,11 @@ public class Translate {
             return this;
         }
 
+        /**
+         * Set is retry on connection failure.
+         * @param retryOnConnectionFailure retryOnConnectionFailure
+         * @return This {@link Builder}
+         */
         public Builder retryOnConnectionFailure(boolean retryOnConnectionFailure) {
             this.retryOnConnectionFailure = retryOnConnectionFailure;
             return this;
@@ -216,6 +229,9 @@ public class Translate {
          * Sets the default connect timeout for new connections. A value of 0 means no timeout,
          * otherwise values must be between 1 and {@link Integer#MAX_VALUE} when converted to
          * milliseconds.
+         * @param timeout The timeout length.
+         * @param unit The time unit.
+         * @return This {@link Builder}
          */
         public Builder connectTimeout(long timeout, TimeUnit unit) {
             this.connectTimeout = timeout;
@@ -226,6 +242,9 @@ public class Translate {
         /**
          * Sets the default read timeout for new connections. A value of 0 means no timeout, otherwise
          * values must be between 1 and {@link Integer#MAX_VALUE} when converted to milliseconds.
+         * @param timeout The timeout length.
+         * @param unit The time unit.
+         * @return This {@link Builder}
          */
         public Builder readTimeout(long timeout, TimeUnit unit) {
             this.readTimeout = timeout;
@@ -236,6 +255,9 @@ public class Translate {
         /**
          * Sets the default write timeout for new connections. A value of 0 means no timeout, otherwise
          * values must be between 1 and {@link Integer#MAX_VALUE} when converted to milliseconds.
+         * @param timeout The timeout length.
+         * @param unit The time unit.
+         * @return This {@link Builder}
          */
         public Builder writeTimeout(long timeout, TimeUnit unit) {
             this.writeTimeout = timeout;
@@ -247,6 +269,8 @@ public class Translate {
          * Sets the HTTP proxy that will be used by connections created by this client. This takes
          * precedence over {@link #proxySelector}, which is only honored when this proxy is null (which
          * it is by default). To disable proxy use completely, call {@code setProxy(Proxy.NO_PROXY)}.
+         * @param proxy proxy
+         * @return This {@link Builder}
          */
         public Builder proxy(Proxy proxy) {
             this.proxy = proxy;
@@ -260,6 +284,8 @@ public class Translate {
          *
          * <p>If unset, the {@link ProxySelector#getDefault() system-wide default} proxy selector will
          * be used.
+         * @param proxySelector The proxy selection policy.
+         * @return This {@link Builder}
          */
         public Builder proxySelector(ProxySelector proxySelector) {
             this.proxySelector = proxySelector;
@@ -268,7 +294,7 @@ public class Translate {
 
         /**
          * Create the {@link Translate} instance using the configured values.
-         * <p>
+         * @return This {@link Builder}
          */
         public Translate build() {
             return new Translate(this);
