@@ -14,7 +14,7 @@ import retrofit2.http.Query;
  * Translate API Service
  * @author ligboy
  */
-public interface TranslateService {
+interface TranslateService {
 
     @GET("/")
     @Headers({

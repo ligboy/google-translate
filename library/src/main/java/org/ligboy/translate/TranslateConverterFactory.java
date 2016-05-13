@@ -25,7 +25,9 @@ import java.util.regex.Pattern;
  * Translate Converter Factory
  * @author ligboy
  */
-public class TranslateConverterFactory extends Converter.Factory {
+class TranslateConverterFactory extends Converter.Factory {
+
+    static final TranslateConverterFactory DEFAULT = new TranslateConverterFactory();
 
     private static final Pattern PATTERN_TOKEN_KEY = Pattern.compile("TKK=eval\\('(.*?)'\\);");
 
@@ -34,7 +36,7 @@ public class TranslateConverterFactory extends Converter.Factory {
         if (type == TranslateResult.class) {
             return new Converter<ResponseBody, TranslateResult>() {
 
-                private Gson mGson = new Gson();
+                private final Gson mGson = new Gson();
 
                 @Override
                 public TranslateResult convert(ResponseBody value) throws IOException {
