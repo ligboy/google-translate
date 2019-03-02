@@ -29,7 +29,7 @@ class TranslateConverterFactory extends Converter.Factory {
 
     static final TranslateConverterFactory DEFAULT = new TranslateConverterFactory();
 
-    private static final Pattern PATTERN_TOKEN_KEY = Pattern.compile("tkk:'(\\d*\\.\\d*)'");
+    private static final Pattern PATTERN_TOKEN_KEY = Pattern.compile("tkk: *['\"](\\d*\\.\\d*)['\"]");
 
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
