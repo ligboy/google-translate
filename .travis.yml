@@ -4,8 +4,7 @@ jdk:
 deploy:
   provider: releases
   api_key:
-    secure: iDYq/BUsWGAxpW1Y2k1XcaajLT5nzMGfNhLMZnEvuz9k0QiOD+xZjk5hV5UqHSTXU70qqvVqb90leSFsy27hbTAXRttWl+4uIgXJuGmclLNIdVCA8OsOlWkcyIrNZRJdWrmx/DkgGZasB8P/V+EnOQpyfpS+gN49ahqUutafhn4vMoidJYtbQ6LH8jewnv9tSUa/jlPDuF38nPROvY1XVfDgEp4UIw9NS5TTD8UuhD9h5Zbj4X+l7ywtRIKPzI0ap+F76NPNB/8LKmUoP/3wmw6JJapZN6UBKjKQue7T6r+ICo6ajwuic0QCL49Km1kLnx3HDfBM6LwZZjzLfaBWOs1CfBlcrUX7gDJaoVRk5toDDB2Kg1HJfaH94AcnHKJwTEAkv1pskjPQNrLc99/KoqWJFl61wvaSkDIriq6ppIEg9j8RYrbJ4LJ8p9e7kKaJl8bHYjz8uJ1fSuaW+Wf8A/bUTeBjV++o5p0Fpy1KBPvMnAhXE2ScL4FQ1xLdF+V/VOhSW5Tj3+cttFpL0jxbuSDAfa8SiIJgtTBXArTk2stu7QgY2J2Gl3/BkVms3kaBD4xxasa9xxAiSDTbp67GUPHcoZdIdQzgHnwQybYb4bgroTOQ4pIxBfIXQliti0l9K41PAhMnxNXB1rn0Xfibz+MuctKZCIsN74SeNNgOVeQ=
-  file_glob: true
+    secure: GgbYHGFrQnfR/tsMs+pH89ukE3/tFJY4dSvFYGMy3+8AWzt08zvJomqXikpndUvjC3oSJBsaAWRKYkVlquxw7usHstz9gts1u1Chx3BDRVlHL4J52IzKJiTJsOHL7qFfEczFzkhaP6Co1qi3KNNW57nx3WGz557Omqcwg4N3K2hejntOxTKVODQxPhyTpO04ZNddZBy+6c4OF6C+2Bd1wNVmv/DyjyL2ptZhT0OSfvJVWxm6sJlGj/sX44q450yCr8Ygh4omngyLT6tASzqXVg42mogR114OooNzQFQxmH6L//zWMTrH1ts5vJrWmDnzWkDWb1eddVmjHvVN0xAQXYikqW369If+uhphr1mxbxvBDEZSD84FUSoFzeaeuPINegjFj1uTeXKJZP7S0yycg24yNh7uwaWaI71u0n5GCl8sQinvUagUqs0pg3gpLSZ/4x6p1otYYXb+IcC00bljxil+96Bj5sahTgdzFP2v5pTaMCD4ebG6HT85uy0U66QN2Xo0XhBwyG82LXHawezvZ77bOzbJaIxSPAvFpqpJGXPBSM+0R69RG1PqgD/iTY0SmZ0OLpRrhxs2B+InA7I1+ZM4yhkfb+1XzcP7KOtg4dBZvWVDw5tnjHOOSFFLwiCtLS5JO9zuKzvYu1wXA3BD8Jn5CuqxlBC6/z014Bir4VM=
   file: library/build/libs/google-translate-*.jar
   skip_cleanup: true
   on:
@@ -20,5 +19,5 @@ notifications:
 sudo: false
 cache:
   directories:
-    - "$HOME/.gradle/caches/"
-    - "$HOME/.gradle/wrapper/"
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
