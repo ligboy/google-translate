@@ -11,13 +11,13 @@ Usage
 <dependency>
   <groupId>org.ligboy.library</groupId>
   <artifactId>google-translate</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 ### or Gradle:
 #### dependency:
 ```groovy
-compile 'org.ligboy.library:google-translate:1.0.0'
+compile 'org.ligboy.library:google-translate:1.0.1'
 ```
 Java Code
 
