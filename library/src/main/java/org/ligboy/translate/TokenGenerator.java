@@ -13,7 +13,7 @@ import java.util.List;
 @SuppressWarnings("WeakerAccess")
 public class TokenGenerator {
 
-    private String mTokenKey = "406249.3075489964";
+    private String mTokenKey;
     private static final String SB = "+-a^+6";
     private static final String ZB = "+-3^+b+-f";
 

@@ -10,9 +10,6 @@ import org.ligboy.translate.model.TranslateResult;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -42,13 +39,12 @@ class TranslateConverterFactory extends Converter.Factory {
                 public TranslateResult convert(ResponseBody value) throws IOException {
                     TranslateResult data = new TranslateResult();
                     JsonReader jsonReader = mGson.newJsonReader(value.charStream());
-                    JsonArray jsonArray = null;
+                    JsonArray jsonArray;
                     try {
                         jsonArray = mGson.fromJson(jsonReader, JsonArray.class);
                     } finally {
                         value.close();
                     }
-//                    JSONArray objects = JSON.parseArray(body);
                     if (jsonArray != null) {
                         JsonArray translations = jsonArray.get(0).getAsJsonArray();
                         if (translations != null && translations.size() > 1) {
@@ -79,22 +75,10 @@ class TranslateConverterFactory extends Converter.Factory {
                     if (!body.isEmpty()) {
                         Matcher matcher = PATTERN_TOKEN_KEY.matcher(body);
                         if (matcher.find()) {
-                            //uses JavaScript Engine to eval the key
-                            ScriptEngine engine;
-                            ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
-                            //The new faster javascript engine with java 8.
-                            engine = scriptEngineManager.getEngineByName("nashorn");
-                            //backport to java 6
-                            if (engine == null) {
-                                engine = scriptEngineManager.getEngineByName("JavaScript");
-                            }
-                            try {
-                                String key = (String) engine.eval(matcher.group());
-                                TokenKey tokenKey = new TokenKey();
-                                tokenKey.setKey(key);
-                                return tokenKey;
-                            } catch (ScriptException ignored) {
-                            }
+                            final String key = matcher.group(1);
+                            TokenKey tokenKey = new TokenKey();
+                            tokenKey.setKey(key);
+                            return tokenKey;
                         }
                     }
                     return null;
